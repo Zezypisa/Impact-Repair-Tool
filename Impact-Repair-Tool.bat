@@ -94,8 +94,14 @@ goto uninstallimpact
 	del /S /Q "%dir%\Baritone\
 	del /S /Q "%dir%\libraries\cabaletta
 	del /S /Q "%dir%\libraries\com\github\ImpactDevelopment
+	
+	rd /S /Q "%dir%\Impact\
+	rd /S /Q "%dir%\Baritone\
+	rd /S /Q "%dir%\libraries\cabaletta
+	rd /S /Q "%dir%\libraries\com\github\ImpactDevelopment
 	if NOT %delver%=="forge" (
 		del /S /Q "%dir%\versions\%delver%
+		rd /S /Q "%dir%\versions\%delver%
 	)
 	if %delver%=="forge" (
 		echo You will need to remove the Impact mod from .minecraft/mods manually
@@ -123,6 +129,7 @@ goto uninstallbaritone
 	:uballow
 	cls
 	del /S /Q "%dir%\Baritone\
+	rd /S /Q "%dir%\Baritone\
 	echo You will need to remove the Baritone mod from .minecraft/mods manually
 	echo Finished!
 	pause
@@ -148,6 +155,8 @@ goto rcimpact
 	cls
 	del /S /Q "%dir%\Impact\
 	del /S /Q "%dir%\Baritone\
+	rd /S /Q "%dir%\Impact\
+	rd /S /Q "%dir%\Baritone\
 	echo Finished!
 	pause
 	goto homemenu
@@ -171,6 +180,7 @@ goto rcbaritone
 	:rcballow
 	cls
 	del /S /Q "%dir%\Baritone\
+	rd /S /Q "%dir%\Baritone\
 	echo Finished!
 	pause
 	goto homemenu
