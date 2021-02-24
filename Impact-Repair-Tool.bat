@@ -9,9 +9,9 @@ goto homemenu
 :homemenu
 title Impact Repair Tool
 cls
-echo Welcome to Impact Repair Tool! (note this software does not work with the nightly builds)
+echo Welcome to Impact Repair Tool!
 echo Make sure Minecraft is closed when using this
-echo This file alone only works for windows
+echo This file alone only works for windows and default MC launcher
 echo ===Select Repair Option===
 echo 1) Uninstall Impact
 echo 2) Uninstall Baritone
@@ -46,41 +46,61 @@ goto uninstallimpact
 	cls
 	echo Please type out the version to use
 	echo type "EXIT" to exit
-	set /p chooseVer=Please type a version / forge (with quotes surrounding it): 
+	set /p chooseVer=Please type a version / forge / nightly (with quotes surrounding it): 
 	if %chooseVer%=="1.11.2" (
 		set delver="1.11.2-Impact_4.0"
+		set whattype="normal"
 		goto uiallow2
 	)
 	if %chooseVer%=="1.12" (
 		set delver="1.12-Impact_4.0"
+		set whattype="normal"
 		goto uiallow2
 	)
 	if %chooseVer%=="1.12.1" (
 		set delver="1.12.1-Impact_4.1"
+		set whattype="normal"
 		goto uiallow2
 	)
 	if %chooseVer%=="1.12.2" (
 		set delver="1.12.2-Impact_4.9.1"
+		set whattype="normal"
 		goto uiallow2
 	)
 	if %chooseVer%=="1.13.2" (
 		set delver="1.13.2-Impact_4.9.1"
+		set whattype="normal"
 		goto uiallow2
 	)
 	if %chooseVer%=="1.14.4" (
 		set delver="1.14.4-Impact_4.9.1"
+		set whattype="normal"
 		goto uiallow2
 	)
 	if %chooseVer%=="1.15.2" (
 		set delver="1.15.2-Impact_4.9.1"
+		set whattype="normal"
 		goto uiallow2
 	)
 	if %chooseVer%=="1.16.4" (
-		set delver="1.16.4-Impact_nightly-20201218"
+		set delver="1.16.4-Impact_nightly-20210115"
+		set whattype="nightly"
+		goto uiallow2
+	)
+	if %chooseVer%=="1.16.5" (
+		set delver="1.16.4-Impact_nightly-20210223"
+		set whattype="nightly"
 		goto uiallow2
 	)
 	if %chooseVer%=="forge" (
-		set delver="None"
+		set delver="none"
+		set whattype="forge"
+		goto uiallow2
+	)
+	if %chooseVer%=="nightly" (
+		set delver="none"
+		set whattype="nightly"
+		goto uiallow2
 	)
 	if %chooseVer%=="exit" (
 		goto homemenu
@@ -89,23 +109,32 @@ goto uninstallimpact
 	pause
 	goto uiallow
 	
-	:uiallow2
-	del /S /Q "%dir%\Impact\
-	del /S /Q "%dir%\Baritone\
-	del /S /Q "%dir%\libraries\cabaletta
-	del /S /Q "%dir%\libraries\com\github\ImpactDevelopment
+		:uiallow2
+		//delete files in dir
+		del /S /Q "%dir%\Impact\
+		del /S /Q "%dir%\Baritone\
+		del /S /Q "%dir%\libraries\cabaletta
+		del /S /Q "%dir%\libraries\com\github\ImpactDevelopment
+
+		//delete dir
+		rd /S /Q "%dir%\Impact\
+		rd /S /Q "%dir%\Baritone\
+		rd /S /Q "%dir%\libraries\cabaletta
+		rd /S /Q "%dir%\libraries\com\github\ImpactDevelopment
+
+		//delete correct version
+		if %whattype%=="normal" (
+			del /S /Q "%dir%\versions\%delver%
+			rd /S /Q "%dir%\versions\%delver%
+			echo Successfully deleted the version directory
+		)
+		if %whattype%=="forge" (
+			echo You will need to remove the Impact mod from .minecraft/mods manually
+		)
+		if %whattype%=="nightly" (
+			echo You will need to remove the Impact folder from .minecraft/versions manually
+		)
 	
-	rd /S /Q "%dir%\Impact\
-	rd /S /Q "%dir%\Baritone\
-	rd /S /Q "%dir%\libraries\cabaletta
-	rd /S /Q "%dir%\libraries\com\github\ImpactDevelopment
-	if NOT %delver%=="forge" (
-		del /S /Q "%dir%\versions\%delver%
-		rd /S /Q "%dir%\versions\%delver%
-	)
-	if %delver%=="forge" (
-		echo You will need to remove the Impact mod from .minecraft/mods manually
-	)
 	echo Finished!
 	pause
 	goto homemenu
@@ -114,6 +143,7 @@ goto uninstallimpact
 	echo Repair Stopped
 	pause
 	goto homemenu
+
 ::===uninstallbaritone===
 :uninstallbaritone
 cls
@@ -139,6 +169,7 @@ goto uninstallbaritone
 	echo Repair Stopped
 	pause
 	goto homemenu
+
 ::===rcimpact===
 :rcimpact
 cls
@@ -165,6 +196,7 @@ goto rcimpact
 	echo Repair Stopped
 	pause
 	goto homemenu
+
 ::===rcbaritone===
 :rcbaritone
 cls
@@ -189,6 +221,7 @@ goto rcbaritone
 	echo Repair Stopped
 	pause
 	goto homemenu
+
 ::===tlauncher===
 :tlauncher
 cls
@@ -197,6 +230,7 @@ echo Buy the game and use impact
 echo dont pirate games next time :3
 pause
 goto homemenu
+
 ::===menuexit===
 :menuexit
 cls
