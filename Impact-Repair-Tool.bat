@@ -88,7 +88,7 @@ goto uninstallimpact
 		goto uiallow2
 	)
 	if %chooseVer%==1.16.5 (
-		set delver="1.16.4-Impact_nightly-20210223"
+		set delver="1.16.4-Impact_nightly-20210303"
 		set whattype="nightly"
 		goto uiallow2
 	)
@@ -153,10 +153,10 @@ goto uninstallimpact
 			echo You will need to remove the Impact mod from .minecraft/mods manually
 		)
 		if %whattype%=="nightly" (
-			echo You will need to remove the Impact folder from .minecraft/versions manually
+			echo You will need to remove the Impact version folder from .minecraft/versions manually
 		)
 		if %whattype%=="other" (
-			echo You will need to remove the Impact folder from .minecraft/versions manually
+			echo You will need to remove the Impact version folder from .minecraft/versions manually
 		)
 	
 	echo Finished!
