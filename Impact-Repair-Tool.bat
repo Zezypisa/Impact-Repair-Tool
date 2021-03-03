@@ -46,63 +46,68 @@ goto uninstallimpact
 	cls
 	echo Please type out the version to use
 	echo type "EXIT" to exit
-	set /p chooseVer=Please type a version / forge / nightly (with quotes surrounding it): 
-	if %chooseVer%=="1.11.2" (
+	set /p chooseVer=Please type a version, forge, nightly, other:  
+	if %chooseVer%==1.11.2 (
 		set delver="1.11.2-Impact_4.0"
 		set whattype="normal"
 		goto uiallow2
 	)
-	if %chooseVer%=="1.12" (
+	if %chooseVer%==1.12 (
 		set delver="1.12-Impact_4.0"
 		set whattype="normal"
 		goto uiallow2
 	)
-	if %chooseVer%=="1.12.1" (
+	if %chooseVer%==1.12.1 (
 		set delver="1.12.1-Impact_4.1"
 		set whattype="normal"
 		goto uiallow2
 	)
-	if %chooseVer%=="1.12.2" (
+	if %chooseVer%==1.12.2 (
 		set delver="1.12.2-Impact_4.9.1"
 		set whattype="normal"
 		goto uiallow2
 	)
-	if %chooseVer%=="1.13.2" (
+	if %chooseVer%==1.13.2 (
 		set delver="1.13.2-Impact_4.9.1"
 		set whattype="normal"
 		goto uiallow2
 	)
-	if %chooseVer%=="1.14.4" (
+	if %chooseVer%==1.14.4 (
 		set delver="1.14.4-Impact_4.9.1"
 		set whattype="normal"
 		goto uiallow2
 	)
-	if %chooseVer%=="1.15.2" (
+	if %chooseVer%==1.15.2 (
 		set delver="1.15.2-Impact_4.9.1"
 		set whattype="normal"
 		goto uiallow2
 	)
-	if %chooseVer%=="1.16.4" (
+	if %chooseVer%==1.16.4 (
 		set delver="1.16.4-Impact_nightly-20210115"
 		set whattype="nightly"
 		goto uiallow2
 	)
-	if %chooseVer%=="1.16.5" (
+	if %chooseVer%==1.16.5 (
 		set delver="1.16.4-Impact_nightly-20210223"
 		set whattype="nightly"
 		goto uiallow2
 	)
-	if %chooseVer%=="forge" (
+	if %chooseVer%==forge (
 		set delver="none"
 		set whattype="forge"
 		goto uiallow2
 	)
-	if %chooseVer%=="nightly" (
+	if %chooseVer%==nightly (
 		set delver="none"
 		set whattype="nightly"
 		goto uiallow2
 	)
-	if %chooseVer%=="exit" (
+	if %chooseVer%==other (
+		set delver="none"
+		set whattype="other"
+		goto uiallow2
+	)
+	if %chooseVer%==exit (
 		goto homemenu
 	)
 	echo %chooseVer% is not a choice, please type a version
@@ -111,27 +116,46 @@ goto uninstallimpact
 	
 		:uiallow2
 		//delete files in dir
-		del /S /Q "%dir%\Impact\
-		del /S /Q "%dir%\Baritone\
-		del /S /Q "%dir%\libraries\cabaletta
-		del /S /Q "%dir%\libraries\com\github\ImpactDevelopment
+		del /S /Q %dir%\Impact\
+		del /S /Q %dir%\Baritone\
+		del /S /Q %dir%\libraries\cabaletta
+		del /S /Q %dir%\libraries\com\github\ImpactDevelopment
+		del /S /Q %dir%\libraries\com\github\ZeroMemes\Alpine
+		del /S /Q %dir%\libraries\net\minecraft\launchwrapper
+		del /S /Q %dir%\libraries\net\impactclient
+		del /S /Q %dir%\libraries\net\jodah\typetools
+		del /S /Q %dir%\libraries\io\jsonwebtoken
+		del /S /Q %dir%\libraries\club\minnced\java-discord-rpc
+		del /S /Q %dir%\libraries\org\ow2\asm
+		del /S /Q %dir%\libraries\org\json\json
 
 		//delete dir
-		rd /S /Q "%dir%\Impact\
-		rd /S /Q "%dir%\Baritone\
-		rd /S /Q "%dir%\libraries\cabaletta
-		rd /S /Q "%dir%\libraries\com\github\ImpactDevelopment
-
+		rd /S /Q %dir%\Impact\
+		rd /S /Q %dir%\Baritone\
+		rd /S /Q %dir%\libraries\cabaletta
+		rd /S /Q %dir%\libraries\com\github\ImpactDevelopment
+		rd /S /Q %dir%\libraries\com\github\ZeroMemes\Alpine
+		rd /S /Q %dir%\libraries\net\minecraft\launchwrapper
+		rd /S /Q %dir%\libraries\net\impactclient
+		rd /S /Q %dir%\libraries\net\jodah\typetools
+		rd /S /Q %dir%\libraries\io\jsonwebtoken
+		rd /S /Q %dir%\libraries\club\minnced\java-discord-rpc
+		rd /S /Q %dir%\libraries\org\ow2\asm
+		rd /S /Q %dir%\libraries\org\json\json
+		
 		//delete correct version
 		if %whattype%=="normal" (
-			del /S /Q "%dir%\versions\%delver%
-			rd /S /Q "%dir%\versions\%delver%
+			del /S /Q %dir%\versions\%delver%
+			rd /S /Q %dir%\versions\%delver%
 			echo Successfully deleted the version directory
 		)
 		if %whattype%=="forge" (
 			echo You will need to remove the Impact mod from .minecraft/mods manually
 		)
 		if %whattype%=="nightly" (
+			echo You will need to remove the Impact folder from .minecraft/versions manually
+		)
+		if %whattype%=="other" (
 			echo You will need to remove the Impact folder from .minecraft/versions manually
 		)
 	
@@ -158,8 +182,8 @@ goto uninstallbaritone
 
 	:uballow
 	cls
-	del /S /Q "%dir%\Baritone\
-	rd /S /Q "%dir%\Baritone\
+	del /S /Q %dir%\Baritone\
+	rd /S /Q %dir%\Baritone\
 	echo You will need to remove the Baritone mod from .minecraft/mods manually
 	echo Finished!
 	pause
@@ -184,10 +208,10 @@ goto rcimpact
 	
 	:rciallow
 	cls
-	del /S /Q "%dir%\Impact\
-	del /S /Q "%dir%\Baritone\
-	rd /S /Q "%dir%\Impact\
-	rd /S /Q "%dir%\Baritone\
+	del /S /Q %dir%\Impact\
+	del /S /Q %dir%\Baritone\
+	rd /S /Q %dir%\Impact\
+	rd /S /Q %dir%\Baritone\
 	echo Finished!
 	pause
 	goto homemenu
@@ -211,8 +235,8 @@ goto rcbaritone
 	
 	:rcballow
 	cls
-	del /S /Q "%dir%\Baritone\
-	rd /S /Q "%dir%\Baritone\
+	del /S /Q %dir%\Baritone\
+	rd /S /Q %dir%\Baritone\
 	echo Finished!
 	pause
 	goto homemenu
