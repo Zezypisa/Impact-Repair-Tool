@@ -9,9 +9,9 @@ goto homemenu
 :homemenu
 title Impact Repair Tool
 cls
-echo Welcome to Impact Repair Tool!
-echo Make sure Minecraft is closed when using this
+echo Welcome to Impact Repair Tool created by Zezypisa, Make sure Minecraft is closed when using this.
 echo This file alone only works for windows and default MC launcher
+echo 
 echo ===Select Repair Option===
 echo 1) Uninstall Impact
 echo 2) Uninstall Baritone
@@ -20,12 +20,12 @@ echo 4) Remove config for Baritone
 echo 5) Tlauncher / 3rd party launcher fix
 echo type "EXIT" to exit
 set /p select=Please Type an Option: 
-if "%select%" EQU "1" goto uninstallimpact
-if "%select%" EQU "2" goto uninstallbaritone
-if "%select%" EQU "3" goto rcimpact
-if "%select%" EQU "4" goto rcbaritone
-if "%select%" EQU "5" goto tlauncher
-if "%select%" EQU "exit" goto menuexit
+if "%select%" == "1" goto uninstallimpact
+if "%select%" == "2" goto uninstallbaritone
+if "%select%" == "3" goto rcimpact
+if "%select%" == "4" goto rcbaritone
+if "%select%" == "5" goto tlauncher
+if "%select%" == "exit" goto menuexit
 echo %select% is not a choice, please type a number
 pause
 goto homemenu
@@ -36,8 +36,8 @@ cls
 echo This will remove impact, and will remove the config too, are you sure you want to continue?
 echo please type "yes" or "no"
 set /p select=Please type an option: 
-if "%select%" EQU "yes" goto uiallow
-if "%select%" EQU "no" goto uideny
+if "%select%" == "yes" goto uiallow
+if "%select%" == "no" goto uideny
 echo %select% is not a choice, please type yes or no
 pause
 goto uninstallimpact
@@ -174,8 +174,8 @@ cls
 echo This will remove baritone, and will remove the config too, are you sure you want to continue?
 echo please type "yes" or "no"
 set /p select=Please type an option: 
-if "%select%" EQU "yes" goto uballow
-if "%select%" EQU "no" goto ubdeny
+if "%select%" == "yes" goto uballow
+if "%select%" == "no" goto ubdeny
 echo %select% is not a choice, please type yes or no
 pause
 goto uninstallbaritone
@@ -200,8 +200,8 @@ cls
 echo This will remove impacts + baritones config, are you sure you want to continue?
 echo please type "yes" or "no"
 set /p select=Please type an option: 
-if "%select%" EQU "yes" goto rciallow
-if "%select%" EQU "no" goto rcideny
+if "%select%" == "yes" goto rciallow
+if "%select%" == "no" goto rcideny
 echo %select% is not a choice, please type yes or no
 pause
 goto rcimpact
@@ -227,8 +227,8 @@ cls
 echo This will remove baritones config, are you sure you want to continue?
 echo please type "yes" or "no"
 set /p select=Please type an option: 
-if "%select%" EQU "yes" goto rcballow
-if "%select%" EQU "no" goto rcbdeny
+if "%select%" == "yes" goto rcballow
+if "%select%" == "no" goto rcbdeny
 echo %select% is not a choice, please type yes or no
 pause
 goto rcbaritone
